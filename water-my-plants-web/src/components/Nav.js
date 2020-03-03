@@ -15,7 +15,7 @@ const Nav = () => {
     return (
         <nav>
             <div className="nav-cont">
-                <div>
+                <div className="img-div">
                     <img src="../img/Logo.png" alt="water-my-plants-logo"/>
                 </div>
                 <div>
