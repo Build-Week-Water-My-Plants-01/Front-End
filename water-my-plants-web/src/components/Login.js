@@ -5,7 +5,6 @@ import React, { useState } from "react";
 
 const Login= props => {
 
-
     const initialExistingUser = {
         loginUsername: '',
         loginPassword: ''
@@ -13,7 +12,6 @@ const Login= props => {
 
     const [ existingUser, setExistingUser] = useState(initialExistingUser);
     const { loginUsername, loginPassword } = existingUser;
-
 
 
     // Handler Functions
