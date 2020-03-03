@@ -5,7 +5,6 @@ import React, { useState } from "react";
 
 const Login= props => {
 
-    const { addCurrentUser, toggleAuthentication, addToken, notify, toggleLoading, history } = props
 
     const initialExistingUser = {
         loginUsername: '',
@@ -39,6 +38,10 @@ const Login= props => {
 
             <button type='submit'>
                 Login
+            </button>
+
+            <button type='signUp'>
+                Sign Up!
             </button>
         </form>
     )
