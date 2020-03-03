@@ -4,7 +4,7 @@ const Signup = props => {
 
     const initialNewUser = {
         username: '',
-        phonenumber: '',
+        phoneNumber: '',
         password: ''
     }
 
@@ -27,7 +27,7 @@ const Signup = props => {
             </div>
 
             <div className="form-inputs">
-                <input type='phonenumber'  name='phonenumber' onChange={handleInputChange} value={phonenumber} placeholder='Phone Number' required/>
+                <input type='phonenumber'  name='phoneNumber' onChange={handleInputChange} value={phonenumber} placeholder='Phone Number' required/>
             </div>
 
             <div className="form-inputs">
