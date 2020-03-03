@@ -8,7 +8,7 @@ const Nav = () => {
 
     const logout = () => {
         window.localStorage.removeItem('token');
-        history.push('/')
+        history.push('/');
     }
 
 
