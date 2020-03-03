@@ -7,8 +7,8 @@ import Dashboard from './components/Dashboard';
 function App() {
   return (
     <div className="App">
-      <Link to="/dashboard">dashboard</Link>
-      <h1>Water My Plants WEB</h1>
+      {/* <Link to="/dashboard">dashboard</Link>
+      <h1>Water My Plants WEB</h1> */}
       <Route exact path="/dashboard" component={ Dashboard } />
     </div>
   );

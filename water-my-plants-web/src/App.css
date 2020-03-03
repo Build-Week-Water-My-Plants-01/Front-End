@@ -2,37 +2,64 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav {
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-cont {
+  max-width: 1000px;
+  border: 1px solid red;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  height: 5vh;
+  align-items: center;
+}
+
+.img-div {
+  border: 1px solid red;
+}
+.plant-card {
+  border: 2px solid grey;
+  width: 300px;
+  height: 400px;
+  background-color: bisque;
+  margin: 5px;
+}
+
+.plant-container {
+  display: flex;
+  max-width: 1000px;
+  flex-wrap: wrap;
+  background-color: lightgray;
+  min-height: 90vh;
+  justify-content: center;
+}
+
+
+.btn {
+  width: 40%;
+  height: 5vh;
+  border: 1px solid black;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-delete {
+  background-color: salmon;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-edit {
+  background-color: teal;
+}
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 80px;
+}
+
+.card-content {
+  height: 250px;
 }
