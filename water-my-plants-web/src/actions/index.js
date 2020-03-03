@@ -6,3 +6,7 @@ export const fetchPlants = () => dispatch => {
     dispatch({ type: FETCH_DATA});
     
 }
+
+
+
+

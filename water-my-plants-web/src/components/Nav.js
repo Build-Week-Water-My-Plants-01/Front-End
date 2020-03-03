@@ -14,13 +14,15 @@ const Nav = () => {
 
     return (
         <nav>
-            <div>
-                <img src="../img/Logo.png" alt="water-my-plants-logo"/>
-            </div>
-            <div>
-                <button onClick={()=>{logout()}}>
-                    Logout
-                </button>
+            <div className="nav-cont">
+                <div>
+                    <img src="../img/Logo.png" alt="water-my-plants-logo"/>
+                </div>
+                <div>
+                    <button onClick={()=>{logout()}}>
+                        Logout
+                    </button>
+                </div>
             </div>
         </nav>
     )
