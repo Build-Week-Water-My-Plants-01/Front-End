@@ -1,18 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
-
-
-
-const Login= props => {
+const Login = () => {
 
     const initialExistingUser = {
-        loginUsername: '',
-        loginPassword: ''
+        username: '',
+        password: ''
     }
 
     const [ existingUser, setExistingUser] = useState(initialExistingUser);
     const { loginUsername, loginPassword } = existingUser;
+    const [isSubmitting, setSubmitting] = useState(false);
 
+    const history = useHistory();
+
+
+    useEffect(() => {
+        if(isSubmitting) {
+            axiosWithAuth()
+                .post(`/api/auth/login`, existingUser)
+                .then(res => {
+                    console.log('this is res', res)
+                    window.localStorage.setItem('token', res.data.token);
+                    window.localStorage.setItem('userID', res.data.id);
+                    setSubmitting(false);
+                    history.push('/dashboard');
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+    }, [isSubmitting])
 
     // Handler Functions
     const handleInputChange = (e) => {
@@ -21,9 +40,14 @@ const Login= props => {
             [e.target.name]: e.target.value
         })
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmitting(true)
+    }
     
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="form-inputs">
                 <label htmlFor="username">Username</label>
                 <input type='text'  name='username' onChange={handleInputChange} value={loginUsername} placeholder='Username' required/>
@@ -38,7 +62,7 @@ const Login= props => {
                 Login
             </button>
 
-            <button type='signUp'>
+            <button onClick={()=>{history.push('/signup')}}>
                 Sign Up!
             </button>
         </form>

@@ -8,7 +8,8 @@ const Nav = () => {
 
     const logout = () => {
         window.localStorage.removeItem('token');
-        history.push('/');
+        window.localStorage.removeItem('userID');
+        history.push('/login');
     }
 
 
