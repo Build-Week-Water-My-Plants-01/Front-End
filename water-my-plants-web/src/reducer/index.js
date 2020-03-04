@@ -21,26 +21,27 @@ const INITIAL_STATE = {
     plants:[],
 };
 
-
-
 export const waterMyPlantReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         //FETCH Data Reducer
         case FETCH_DATA: 
             return {
                 ...state,                
-                isFetching: true 
+                isFetching: true,
+                isEditing: true,  
             }
         case FETCH_SUCCESS: 
             return {
                 ...state,
-                isFetching: false,                
+                isFetching: false,
+                isEditing: false,                
                 plants: action.payload 
             }
         case FETCH_FAIL: 
             return {
                 ...state,
-                isFetching: false,                
+                isFetching: false,
+                isEditing: false,                
                 fetchingErrors: action.payload 
             }
 

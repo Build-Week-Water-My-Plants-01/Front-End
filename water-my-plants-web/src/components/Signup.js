@@ -1,17 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Signup = () => {
 
     const initialNewUser = {
         username: '',
-        phoneNumber: '',
+        phone_number: '',
         password: ''
     }
 
     const [ newUser, setNewUser] = useState(initialNewUser);
-    const { username, phonenumber, password } = newUser;
+    const { username, phone_number, password } = newUser;
     const history = useHistory();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+      axiosWithAuth()
+        .post("auth/register", newUser)
+        .then(() => {
+            history.push("/login");
+            console.log(newUser);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        history.push('/login')
+        
+    }
+    
 
     // Handler Functions
     const handleInputChange = (e) => {
@@ -23,13 +41,13 @@ const Signup = () => {
 
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="form-inputs">
                 <input type='text' name='username' onChange={handleInputChange} value={username} placeholder='Username' required/>
             </div>
 
             <div className="form-inputs">
-                <input type='phonenumber'  name='phoneNumber' onChange={handleInputChange} value={phonenumber} placeholder='Phone Number' required/>
+                <input type='phonenumber'  name='phone_number' onChange={handleInputChange} value={phone_number} placeholder='Phone Number' required/>
             </div>
 
             <div className="form-inputs">

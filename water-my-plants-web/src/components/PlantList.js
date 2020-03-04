@@ -112,7 +112,7 @@ const PlantList = (props) => {
     useEffect(() => {
         props.fetchPlants();
         history.push('/dashboard')
-    }, [props.isEditing]);
+    }, []);
 
     return (
         <> 
