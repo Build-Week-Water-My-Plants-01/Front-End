@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 
 
 const Nav = () => {
-
     const history = useHistory();
 
     const logout = () => {
