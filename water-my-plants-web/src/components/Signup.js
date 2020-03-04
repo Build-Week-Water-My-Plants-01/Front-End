@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-const Signup = props => {
+const Signup = () => {
 
     const initialNewUser = {
         username: '',
@@ -10,6 +11,7 @@ const Signup = props => {
 
     const [ newUser, setNewUser] = useState(initialNewUser);
     const { username, phonenumber, password } = newUser;
+    const history = useHistory();
 
     // Handler Functions
     const handleInputChange = (e) => {
@@ -38,7 +40,7 @@ const Signup = props => {
                 Register
             </button>
 
-            <button type='submit'>
+            <button onClick={()=> history.push('/login')}>
                 Already member?
             </button>
 

@@ -14,8 +14,7 @@ const Login = () => {
     const [isSubmitting, setSubmitting] = useState(false);
 
     const history = useHistory();
-
-
+    
     useEffect(() => {
         if(isSubmitting) {
             axiosWithAuth()
@@ -30,6 +29,8 @@ const Login = () => {
                 .catch(err => {
                     console.log(err);
                 })
+        } else {
+            setSubmitting(false);
         }
     }, [isSubmitting])
 
