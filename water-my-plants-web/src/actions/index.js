@@ -21,18 +21,24 @@ export const fetchPlants = () => dispatch => {
 export const EDIT_DATA = "EDIT_DATA";
 export const EDIT_SUCCESS = "EDIT_SUCCESS";
 export const EDIT_FAIL = "EDIT_FAIL";
-export const editPlant = (postParam) => dispatch => {
+export const editPlant = (newPlant) => dispatch => {
     dispatch({ type: EDIT_DATA});
     //axios call goes here
+    axiosWithAuth()
+            .put(`/${userID}/plants/${newPlant.id}`, newPlant)
+            .then(res => {
+                console.log('put request on edit',res);                                    
+            })
+            .catch(err => console.log('error updating', err))
 }
 
 export const ADD_DATA = "ADD_DATA";
 export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAIL = "ADD_FAIL";
-export const addPlant = (plant) => dispatch => {
+export const addPlant = (editPlant) => dispatch => {
     dispatch({ type: ADD_DATA});
     axiosWithAuth()
-        .post(`api/users/${userID}/plants`, plant)
+        .post(`api/users/${userID}/plants/${editPlant.id}`, editPlant)
         .then(res => {
             console.log(res);
             dispatch({ type: ADD_SUCCESS, payload: res.data })
