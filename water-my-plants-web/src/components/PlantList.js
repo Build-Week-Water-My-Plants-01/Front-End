@@ -31,27 +31,28 @@ const PlantList = (props) => {
         console.log('this is target', plant);        
     }
 
-    const submitEdit = e => {
-        e.preventDefault();
+    const submitEdit = (editPlant) => {        
         props.editPlant(editedPlant);
         setEditing(false);
     }
 
-    const submitDelete = () => {
+    const handleEditedPlant = e => {
+        setEditedPlant({
+            ...editedPlant,
+            [e.target.name]: e.target.value,
+        })
 
+    const submitDelete = () => {
+        props.deletePlants(editPlant.id);
     }
 
-    const toggleAdd = e => {
+    const toggleAdd = () => {
         setIsAdding(!isAdding);
     }
     const addNewPlant = () => {
         props.addPlant(newPlant);
     }
-    const handleAddPlant = e => {
-        setAddPlant({
-            ...newPlant,
-            [e.target.name]: e.target.value,
-        })
+    
     }
     const handleImage = e => {
         setAddPlant({
@@ -88,22 +89,22 @@ const PlantList = (props) => {
                 <input 
                     type="text"
                     name="nickname"
-                    onChange={handleAddPlant}
-                    value={editPlant.nickname}
+                    onChange={handleEditedPlant}
+                    value={editedPlant.nickname}
                     />
                 <label htmlFor="species_name">species</label>
                 <input 
                     type="text"
                     name="species_name"
-                    onChange={handleAddPlant}
-                    value={editPlant.species_name}
+                    onChange={handleEditedPlant}
+                    value={editedPlant.species_name}
                     />
-                <label htmlFor="h2o_frequency">Water Frequency</label>
+                <label htmlFor="frequency">Water Frequency</label>
                 <input 
                     type="text"
-                    name="h2o_frequency"
-                    onChange={handleAddPlant}
-                    value={editPlant.h2o_frequency}
+                    name="frequency"
+                    onChange={handleEditedPlant}
+                    value={editedPlant.frequency}
                 />
                 <label htmlFor="plant-image">Plant Image</label>
                 <input 
@@ -129,13 +130,13 @@ const PlantList = (props) => {
                 <input 
                     type="text"
                     name="nickname"
-                    onChange={handleAddPlant}
+                    // onChange={handleAddPlant}
                     />
                 <label htmlFor="species">species</label>
                 <input 
                     type="text"
                     name="species_name"
-                    onChange={handleAddPlant}
+                    // onChange={handleAddPlant}
                     />
                 <label htmlFor="h20_frequency">Water Frequency</label>
                 <input 
