@@ -20,7 +20,6 @@ const PlantList = (props) => {
         image: '',        
     })
 
-
     const [editedPlant, setEditedPlant] = useState({
         nickname:'',
         species_name:'',
@@ -109,10 +108,11 @@ const PlantList = (props) => {
         })
     }
 
+    //fetches plant data to render on screen
     useEffect(() => {
         props.fetchPlants();
         history.push('/dashboard')
-    }, [isEditing]);
+    }, [props.isEditing]);
 
     return (
         <> 
@@ -180,6 +180,7 @@ const PlantList = (props) => {
                     name="nickname"
                     onChange={handleAddPlant}
                     value={newPlant.nickname}
+                    required
                     />
                 <label htmlFor="species_name">species</label>
                 <input 
@@ -201,7 +202,7 @@ const PlantList = (props) => {
                     name="image"
                     onChange={ handleNewImage }
                 />                 
-                <button className="btn-edit" onClick={()=>{addNewPlant()}}>Add New Plant</button>
+                <button type="submit" className="btn-edit" onClick={()=>{addNewPlant()}}>Add New Plant</button>
                 <div className="modal-close" onClick={()=>{toggleAdd()}}>X</div>
             </div>
         </div> : null}
@@ -211,8 +212,6 @@ const PlantList = (props) => {
 const mapStateToProps = state => {
     return {
         isEditing: state.isEditing,
-        isAdding: state.isAdding,
-        isDeleting: state.isDeleting,
         fetchingErrors: state.fetchingErrors,
         plants: state.plants
     }

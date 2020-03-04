@@ -163,7 +163,8 @@ nav {
 .add-btn {
   height: 80px;
   width: 80px;
-  background-color: rgb(91, 255, 241);
+  background-color: rgb(255, 0, 0);
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;

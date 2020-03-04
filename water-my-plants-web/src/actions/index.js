@@ -28,7 +28,7 @@ export const editPlant = (editedPlant, formData) => dispatch => {
     axiosFormData()
             .put(`users/${userID}/plants/${editedPlant.id}`, formData)
             .then(res => {
-                console.log('put request on edit',res);                                    
+                                                   
             })
             .catch(err => console.log('error updating', err))
 }
@@ -41,12 +41,10 @@ export const addPlant = (formData) => dispatch => {
     axiosFormData()
         .post(`users/${userID}/plants/`, formData)
         .then(res => {
-            console.log('adding res', res);
             dispatch({ type: ADD_SUCCESS, payload: res.data })
         })
         .catch(err => {
-            console.log('this wasnt passed',formData);
-            console.log('error adding new plan',err);
+            dispatch({ type: ADD_FAIL, payload: err })
         })
 }
 

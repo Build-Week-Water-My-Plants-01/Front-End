@@ -16,9 +16,7 @@ import {
 
 const INITIAL_STATE = {
     isEditing: false,
-    isDeleting: false,
-    isFeching: false,
-    isAdding: false,
+    isFetching: false,
     fetchingErrors:'',
     plants:[],
 };
@@ -27,7 +25,7 @@ const INITIAL_STATE = {
 
 export const waterMyPlantReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        //Fetching Data Reducer
+        //FETCH Data Reducer
         case FETCH_DATA: 
             return {
                 ...state,                
@@ -45,37 +43,56 @@ export const waterMyPlantReducer = (state = INITIAL_STATE, action) => {
                 isFetching: false,                
                 fetchingErrors: action.payload 
             }
-        //Adding Data Reducer
+
+        //ADD Data Reducer
         case ADD_DATA: 
             return {
                 ...state,                
-                isAdding: true, 
+                isEditing: true, 
             }
         case ADD_SUCCESS: 
             return {
                 ...state,                
-                isAdding: false, 
+                isEditing: false, 
             }
         case ADD_FAIL: 
             return {
                 ...state,                
-                isAdding: false,
+                isEditing: false,
             }
-            //Adding Data Reducer
+
+        //ADD Data Reducer
+        case EDIT_DATA: 
+            return {
+                ...state,                
+                isEditing: true, 
+            }
+        case EDIT_SUCCESS: 
+            return {
+                ...state,                
+                isEditing: false, 
+            }
+        case EDIT_FAIL: 
+            return {
+                ...state,                
+                isEditing: false,
+            }
+
+        //DELETE Data Reducer
         case DELETE_DATA: 
         return {
             ...state,                
-            isDeleting: true, 
+            isEditing: true, 
             }
          case DELETE_SUCCESS: 
             return {
             ...state,                
-            isDeleting: false, 
+            isEditing: false, 
             }
         case DELETE_FAIL: 
             return {
             ...state,                
-            isDeleting: false,
+            isEditing: false,
             }
         default: 
             return state;
