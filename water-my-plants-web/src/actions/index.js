@@ -14,7 +14,7 @@ export const fetchPlants = () => dispatch => {
             dispatch({ type: FETCH_SUCCESS, payload: res.data.plants});
         })
         .catch(err => {
-            console.log('err in fetching plants', err);
+            // console.log('err in fetching plants', err);
             dispatch({ type: FETCH_FAIL, payload: err});
         })  
 }
@@ -28,7 +28,7 @@ export const editPlant = (editedPlant, formData) => dispatch => {
     axiosFormData()
             .put(`users/${userID}/plants/${editedPlant.id}`, formData)
             .then(res => {
-                                                   
+                fetchPlants();                         
             })
             .catch(err => console.log('error updating', err))
 }
@@ -56,11 +56,12 @@ export const deletePlants = (editPlant) => dispatch => {
     axiosWithAuth()
         .delete(`users/${userID}/plants/${editPlant.id}`)
         .then(res => {
-            console.log('success deleting', res);
+            // console.log('success deleting', res);
             dispatch({ type: DELETE_SUCCESS });
         })
         .catch(err => {
-            console.log('error deleting', err);
+            // console.log('error deleting', err);
             dispatch({ type: DELETE_FAIL })
         })
 }
+
