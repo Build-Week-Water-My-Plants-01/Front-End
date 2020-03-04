@@ -84,7 +84,13 @@ const PlantList = (props) => {
         setTimeout(() => {
             console.log('add test', formData);
             props.addPlant(formData);
-            formData = new FormData;    
+            setNewPlant({
+                nickname:'',
+                species_name:'',
+                h2o_frequency:'',
+                image: '', 
+            })
+                
             }, 500);
         setIsAdding(false);
     }

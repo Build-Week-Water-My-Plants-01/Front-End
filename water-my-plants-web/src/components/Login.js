@@ -18,7 +18,7 @@ const Login = () => {
     useEffect(() => {
         if(isSubmitting) {
             axiosWithAuth()
-                .post(`/api/auth/login`, existingUser)
+                .post(`auth/login`, existingUser)
                 .then(res => {
                     console.log('this is res', res)
                     window.localStorage.setItem('token', res.data.token);
