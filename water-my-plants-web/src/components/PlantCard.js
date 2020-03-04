@@ -30,9 +30,9 @@ const PlantCard = ({ frequency, image, nickname, species, toggleEdit}) => {
             </div>
 
             <div className="btn-container">
-                <div className="btn btn-delete">
+                {/* <div className="btn btn-delete">
                     Delete
-                </div>
+                </div> */}
                 <div className="btn btn-edit" onClick={()=>{toggleEdit()}}>
                     Edit
                 </div>
