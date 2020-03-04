@@ -7,16 +7,19 @@ import {
         addPlant,
         editPlant 
         } from '../actions'
+import { useHistory } from 'react-router-dom';
 
 const PlantList = (props) => {
+    const history = useHistory();
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setEditing] = useState(false);
-    const [newPlant, setAddPlant] = useState({
+    const [newPlant, setNewPlant] = useState({
         nickname:'',
         species_name:'',
         h2o_frequency:'',
-        image: ''
+        image: '',        
     })
+
 
     const [editedPlant, setEditedPlant] = useState({
         nickname:'',
@@ -28,7 +31,7 @@ const PlantList = (props) => {
     const toggleEdit = (plant) => {
         setEditing(!isEditing);
         setEditedPlant(plant);
-        console.log('this is target', plant);        
+        // console.log('this is target', plant);        
     }
 
     const submitEdit = () => {        
@@ -46,26 +49,48 @@ const PlantList = (props) => {
         })
     }
 
-    const submitDelete = () => {
-        
+    const submitDelete = () => {        
         setTimeout(() => {
         console.log('delete test', editedPlant);
            props.deletePlants(editedPlant); 
         }, 500);
-        setEditing(false);
-        
+        setEditing(false);        
     }
 
+    const handleImage = e => {
+        setEditedPlant({
+            ...editedPlant,
+            image: e.target.files[0]
+        })
+    }
     const toggleAdd = () => {
         setIsAdding(!isAdding);
     }
-    const addNewPlant = () => {
-        props.addPlant(newPlant);
+
+    const handleAddPlant = (e) => {
+        setNewPlant({
+            ...newPlant,
+            [e.target.name]: e.target.value
+        })
+    } 
+
+    const addNewPlant = () => {  
+        let formData = new FormData();
+        formData.append('nickname', newPlant.nickname);
+        formData.append('species_name', newPlant.species_name);
+        formData.append('h2o_frequency', newPlant.h2o_frequency); 
+        formData.append('image', newPlant.image);
+        
+        setTimeout(() => {
+            console.log('add test', formData);
+            props.addPlant(formData);
+            formData = new FormData;    
+            }, 500);
+        setIsAdding(false);
     }
     
-    
-    const handleImage = e => {
-        setAddPlant({
+    const handleNewImage = e => {
+        setNewPlant({
             ...newPlant,
             image: e.target.files[0]
         })
@@ -73,7 +98,8 @@ const PlantList = (props) => {
 
     useEffect(() => {
         props.fetchPlants();
-    }, []);
+        history.push('/dashboard')
+    }, [isEditing]);
 
     return (
         <> 
@@ -136,28 +162,32 @@ const PlantList = (props) => {
         <div className="modal-bg">
             <div className="modal">
                 <h2>Add your Plant</h2>
-                <label htmlFor="nickname">Nickname</label>
                 <input 
                     type="text"
                     name="nickname"
-                    // onChange={handleAddPlant}
+                    onChange={handleAddPlant}
+                    value={newPlant.nickname}
                     />
-                <label htmlFor="species">species</label>
+                <label htmlFor="species_name">species</label>
                 <input 
                     type="text"
                     name="species_name"
-                    // onChange={handleAddPlant}
+                    onChange={handleAddPlant}
+                    value={newPlant.species_name}
                     />
-                <label htmlFor="h20_frequency">Water Frequency</label>
+                <label htmlFor="h2o_frequency">Water Frequency</label>
                 <input 
-                    type="text"/>
-                
+                    type="text"
+                    name="h2o_frequency"
+                    onChange={handleAddPlant}
+                    value={newPlant.h2o_frequency}
+                />
                 <label htmlFor="plant-image">Plant Image</label>
                 <input 
                     type="file"
                     name="image"
-                    onChange={ handleImage }
-                />                
+                    onChange={ handleNewImage }
+                />                 
                 <button className="btn-edit" onClick={()=>{addNewPlant()}}>Add New Plant</button>
                 <div className="modal-close" onClick={()=>{toggleAdd()}}>X</div>
             </div>

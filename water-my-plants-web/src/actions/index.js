@@ -1,4 +1,5 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { axiosFormData } from '../utils/axiosFormData';
 
 const userID = window.localStorage.getItem('userID');
 
@@ -8,12 +9,12 @@ export const FETCH_FAIL = "FETCH_FAIL";
 export const fetchPlants = () => dispatch => {
     dispatch({ type: FETCH_DATA })
     axiosWithAuth()
-        .get(`/api/users/${userID}`)
+        .get(`users/${userID}`)
         .then(res => {
             dispatch({ type: FETCH_SUCCESS, payload: res.data.plants});
         })
         .catch(err => {
-            console.log('err in dashboard', err);
+            console.log('err in fetching plants', err);
             dispatch({ type: FETCH_FAIL, payload: err});
         })  
 }
@@ -25,7 +26,7 @@ export const editPlant = (newPlant) => dispatch => {
     dispatch({ type: EDIT_DATA});
     //axios call goes here
     axiosWithAuth()
-            .put(`/${userID}/plants/${newPlant.id}`, newPlant)
+            .put(`users/${userID}/plants/${newPlant.id}`, newPlant)
             .then(res => {
                 console.log('put request on edit',res);                                    
             })
@@ -35,16 +36,17 @@ export const editPlant = (newPlant) => dispatch => {
 export const ADD_DATA = "ADD_DATA";
 export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAIL = "ADD_FAIL";
-export const addPlant = (editPlant) => dispatch => {
+export const addPlant = (formData) => dispatch => {
     dispatch({ type: ADD_DATA});
-    axiosWithAuth()
-        .post(`api/users/${userID}/plants/${editPlant.id}`, editPlant)
+    axiosFormData()
+        .post(`users/${userID}/plants/`, formData)
         .then(res => {
-            console.log(res);
+            console.log('adding res', res);
             dispatch({ type: ADD_SUCCESS, payload: res.data })
         })
         .catch(err => {
-            console.log(err);
+            console.log('this wasnt passed',formData);
+            console.log('error adding new plan',err);
         })
 }
 
@@ -54,7 +56,7 @@ export const DELETE_FAIL = "DELETE_FAIL";
 export const deletePlants = (editPlant) => dispatch => {
     dispatch({ type: DELETE_DATA});
     axiosWithAuth()
-        .delete(`/api/users/${userID}/plants/${editPlant.id}`)
+        .delete(`users/${userID}/plants/${editPlant.id}`)
         .then(res => {
             console.log('success deleting', res);
             dispatch({ type: DELETE_SUCCESS });
