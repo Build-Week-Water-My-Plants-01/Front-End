@@ -1,13 +1,20 @@
-import axiosWithAuth from '../utils/axiosWithAuth';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 export const FETCH_DATA = 'FETCH_DATA';
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
 
 export const fetchPlants = () => dispatch => {
-    dispatch({ type: FETCH_DATA});
-    //axios call goes here
-    
+    const myId = window.localStorage.getItem('userID');
+    axiosWithAuth()
+        .get(`/api/users/${myId}`)
+        .then(res => {
+            console.log('resID', res.data.plants);
+            dispatch({ type: FETCH_DATA, payload: res.data.plants});
+        })
+        .catch(err => {
+            console.log('err in dashboard', err)
+        })  
 }
 
 export const ADD_DATA = "ADD_DATA";
