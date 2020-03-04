@@ -46,6 +46,7 @@ nav {
   border-radius: 20px;
   background-color: tomato;
   border: none;
+  cursor: pointer;
 }
 .plant-card {
   /* border: 2px solid rgb(18, 99, 38); */
@@ -63,6 +64,7 @@ nav {
   min-height: 90vh;
   justify-content: center;
   margin: auto;
+  position: ;
 }
 
 
@@ -74,6 +76,7 @@ nav {
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .btn-delete {
@@ -98,6 +101,78 @@ nav {
   height: 80px;
 }
 
-.card-content {
-  /* height: 250px; */
+.card-content h1{
+  font-size: 34px;
+}
+
+.modal-bg {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: visibility 0s opacity 0.5s;
+}
+
+.modal {
+  background-color: white;
+  width: 30%;
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.modal input{
+  width: 90%;
+}
+
+.modal-close {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  width: 30px;
+  height: 30px;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.add-plant {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  /* background-color: rgba(255, 0, 255, 0.226); */
+}
+
+.add-btn {
+  height: 80px;
+  width: 80px;
+  background-color: rgb(91, 255, 241);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 58px;
+  font-weight: bold;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: rgb(255, 234, 114);
 }

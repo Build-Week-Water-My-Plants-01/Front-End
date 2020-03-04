@@ -9,12 +9,21 @@ export const fetchPlants = () => dispatch => {
     axiosWithAuth()
         .get(`/api/users/${myId}`)
         .then(res => {
-            console.log('resID', res.data.plants);
+            // console.log('resID', res.data.plants);
             dispatch({ type: FETCH_DATA, payload: res.data.plants});
         })
         .catch(err => {
-            console.log('err in dashboard', err)
+            console.log('err in dashboard', err);
+            dispatch({ type: FETCH_FAIL, payload: err});
         })  
+}
+export const EDIT_DATA = "EDIT_DATA";
+export const EDIT_SUCCESS = "EDIT_SUCCESS";
+export const EDIT_FAIL = "EDIT_FAIL";
+
+export const editPlant = (postParam) => dispatch => {
+    dispatch({ type: EDIT_DATA});
+    //axios call goes here
 }
 
 export const ADD_DATA = "ADD_DATA";

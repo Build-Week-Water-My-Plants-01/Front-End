@@ -9,13 +9,13 @@ const PlantCard = ({ frequency, image, nickname, species}) => {
                 {image ? 
                     <img 
                         src={image} 
-                        alt="species" 
+                        alt={species} 
                         width="300px" 
                         height="200px" 
                         style={{objectFit: "cover"}}
                     /> : <img 
                         src={require('../img/img-not-found.jpg')} 
-                        alt="species" 
+                        alt={species}  
                         width="300px" 
                         height="200px" 
                         style={{objectFit: "cover"}}
@@ -25,8 +25,8 @@ const PlantCard = ({ frequency, image, nickname, species}) => {
             
             <div className="card-content">                
                 <h1>{nickname}</h1>
-                <h3>{species}</h3>
-                <p>{frequency}</p>                
+                <h3>Species: {species}</h3>
+                <p>Water: {frequency}</p>                
             </div>
 
             <div className="btn-container">
