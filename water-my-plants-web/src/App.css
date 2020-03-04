@@ -1,28 +1,57 @@
 .App {
   text-align: center;
+  margin: auto;
+  background-image: url(https://images.unsplash.com/photo-1425736317462-a103b1303a35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
 }
 
 nav {
   width: 100%;
+  height: 10vh;
+  background-color: rgb(80, 134, 80);
+
 }
 
 .nav-cont {
   max-width: 1000px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-around;
-  height: 5vh;
+  height: 10vh;
   align-items: center;
+  margin: auto;
 }
 
 .img-div {
-  border: 1px solid red;
+  /* border: 1px solid rgb(234, 0, 255); */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+}
+.img-div img{
+  height: 10vh;
+}
+.img-div h1{
+  color: white;
+  font-size: 30px;
+}
+.nav-links {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+.nav-links button {
+  width: 20%;
+  height: 30px;
+  border-radius: 20px;
+  background-color: tomato;
+  border: none;
 }
 .plant-card {
-  border: 2px solid grey;
+  /* border: 2px solid rgb(18, 99, 38); */
   width: 300px;
   height: 400px;
-  background-color: bisque;
+  background-color: rgba(86, 148, 101, 0.966);
   margin: 5px;
 }
 
@@ -30,16 +59,17 @@ nav {
   display: flex;
   max-width: 1000px;
   flex-wrap: wrap;
-  background-color: lightgray;
+  /* background-color: lightgray; */
   min-height: 90vh;
   justify-content: center;
+  margin: auto;
 }
 
 
 .btn {
   width: 40%;
   height: 5vh;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,11 +77,19 @@ nav {
 }
 
 .btn-delete {
-  background-color: salmon;
+  background-color: rgb(145, 21, 21);
+  color: white;
+}
+.btn-delete:hover {
+  background-color: rgb(199, 64, 46);
 }
 
 .btn-edit {
   background-color: teal;
+  color: white;
+}
+.btn-edit:hover {
+  background-color: rgb(97, 179, 145);
 }
 .btn-container {
   display: flex;
@@ -61,5 +99,5 @@ nav {
 }
 
 .card-content {
-  height: 250px;
+  /* height: 250px; */
 }

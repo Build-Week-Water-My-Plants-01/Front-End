@@ -12,14 +12,15 @@ const Nav = () => {
         history.push('/login');
     }
 
-
     return (
         <nav>
             <div className="nav-cont">
                 <div className="img-div">
-                    <img src="../img/Logo.png" alt="water-my-plants-logo"/>
+                    <img 
+                        src={require('../img/Logo.png')} alt="water-my-plants-logo"/>
+                        <h1>Water My Plants 01</h1>
                 </div>
-                <div>
+                <div className="nav-links">
                     <button onClick={()=>{logout()}}>
                         Logout
                     </button>
