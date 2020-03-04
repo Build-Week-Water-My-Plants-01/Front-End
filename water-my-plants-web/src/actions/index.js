@@ -51,10 +51,10 @@ export const addPlant = (editPlant) => dispatch => {
 export const DELETE_DATA = "DELETE_DATA";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const DELETE_FAIL = "DELETE_FAIL";
-export const deletePlants = (id) => dispatch => {
+export const deletePlants = (editPlant) => dispatch => {
     dispatch({ type: DELETE_DATA});
     axiosWithAuth()
-        .delete(`/api/users/${userID}/plants/${id}`)
+        .delete(`/api/users/${userID}/plants/${editPlant.id}`)
         .then(res => {
             console.log('success deleting', res);
             dispatch({ type: DELETE_SUCCESS });

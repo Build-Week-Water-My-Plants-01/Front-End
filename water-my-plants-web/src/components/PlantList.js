@@ -31,8 +31,11 @@ const PlantList = (props) => {
         console.log('this is target', plant);        
     }
 
-    const submitEdit = (editPlant) => {        
-        props.editPlant(editedPlant);
+    const submitEdit = () => {        
+        setTimeout(() => {
+            console.log('editTest', editedPlant);
+            props.editPlant(editedPlant);
+        }, 500);         
         setEditing(false);
     }
 
@@ -41,9 +44,16 @@ const PlantList = (props) => {
             ...editedPlant,
             [e.target.name]: e.target.value,
         })
+    }
 
     const submitDelete = () => {
-        props.deletePlants(editPlant.id);
+        
+        setTimeout(() => {
+        console.log('delete test', editedPlant);
+           props.deletePlants(editedPlant); 
+        }, 500);
+        setEditing(false);
+        
     }
 
     const toggleAdd = () => {
@@ -53,7 +63,7 @@ const PlantList = (props) => {
         props.addPlant(newPlant);
     }
     
-    }
+    
     const handleImage = e => {
         setAddPlant({
             ...newPlant,
