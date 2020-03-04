@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const PlantCard = ({ frequency, image, nickname, species}) => {
+const PlantCard = ({ frequency, image, nickname, species, toggleEdit}) => {
     return (
         <div className="plant-card">
             <div>
@@ -33,7 +33,7 @@ const PlantCard = ({ frequency, image, nickname, species}) => {
                 <div className="btn btn-delete">
                     Delete
                 </div>
-                <div className="btn btn-edit">
+                <div className="btn btn-edit" onClick={()=>{toggleEdit()}}>
                     Edit
                 </div>
             </div>
