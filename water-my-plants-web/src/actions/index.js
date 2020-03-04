@@ -22,11 +22,11 @@ export const fetchPlants = () => dispatch => {
 export const EDIT_DATA = "EDIT_DATA";
 export const EDIT_SUCCESS = "EDIT_SUCCESS";
 export const EDIT_FAIL = "EDIT_FAIL";
-export const editPlant = (newPlant) => dispatch => {
+export const editPlant = (editedPlant, formData) => dispatch => {
     dispatch({ type: EDIT_DATA});
     //axios call goes here
-    axiosWithAuth()
-            .put(`users/${userID}/plants/${newPlant.id}`, newPlant)
+    axiosFormData()
+            .put(`users/${userID}/plants/${editedPlant.id}`, formData)
             .then(res => {
                 console.log('put request on edit',res);                                    
             })

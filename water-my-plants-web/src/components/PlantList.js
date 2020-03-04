@@ -33,21 +33,28 @@ const PlantList = (props) => {
         setEditedPlant(plant);
         // console.log('this is target', plant);        
     }
+    const handleEditedPlant = e => {
+            setEditedPlant({
+                ...editedPlant,
+                [e.target.name]: e.target.value,
+            })
+    }
 
-    const submitEdit = () => {        
+    const submitEdit = () => {     
+        let formData = new FormData();
+        formData.append('nickname', editedPlant.nickname);
+        formData.append('species_name', editedPlant.species_name);
+        formData.append('h2o_frequency', editedPlant.h2o_frequency); 
+        formData.append('image', editedPlant.image);
+
         setTimeout(() => {
             console.log('editTest', editedPlant);
-            props.editPlant(editedPlant);
+            props.editPlant(editedPlant, formData);
         }, 500);         
         setEditing(false);
     }
 
-    const handleEditedPlant = e => {
-        setEditedPlant({
-            ...editedPlant,
-            [e.target.name]: e.target.value,
-        })
-    }
+    
 
     const submitDelete = () => {        
         setTimeout(() => {
