@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 
@@ -11,11 +11,8 @@ const Login = () => {
 
     const [ existingUser, setExistingUser] = useState(initialExistingUser);
     const { loginUsername, loginPassword } = existingUser;
-    const [isSubmitting, setSubmitting] = useState(false);
 
     const history = useHistory();
-    
-
     // Handler Functions
     const handleInputChange = (e) => {
         setExistingUser({
@@ -29,13 +26,14 @@ const Login = () => {
         axiosWithAuth()
             .post(`auth/login`, existingUser)
             .then(res => {
-                console.log('this is res', res)
+                // console.log('this is res', res)
                 window.localStorage.setItem('token', res.data.token);
-                window.localStorage.setItem('userID', res.data.id);        
-                
-                history.push('/dashboard');   
-                       
-        })
+                window.localStorage.setItem('userID', res.data.id);
+                history.push('/dashboard'); 
+            })
+            .catch(err => {
+                console.log("there was an error in the Login", err);
+            })
     }
     
     return (
