@@ -46,7 +46,7 @@ const Signup = () => {
             </div>
 
             <div className="form-inputs">
-                <input type='phonenumber'  name='phone_number' onChange={handleInputChange} value={phone_number} placeholder='Phone Number' required/>
+                <input type='phone_number'  name='phone_number' onChange={handleInputChange} value={phone_number} placeholder='Phone Number' required/>
             </div>
 
             <div className="form-inputs">

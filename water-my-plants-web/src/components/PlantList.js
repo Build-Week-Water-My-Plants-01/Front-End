@@ -7,13 +7,11 @@ import {
         addPlant,
         editPlant 
         } from '../actions';
-import { useHistory } from 'react-router-dom';
 
 const PlantList = (props) => {
-    const history = useHistory();
+
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setEditing] = useState(false);
-    const [fetch, setFetch] = useState(false);
     const [newPlant, setNewPlant] = useState({
         nickname:'',
         species_name:'',
@@ -27,11 +25,6 @@ const PlantList = (props) => {
         h2o_frequency:'',
         image: ''
     })
-
-    // useEffect(() => {    
-    //     props.fetchPlants()
-        
-    // }, []);
 
     const toggleEdit = (plant) => {
         setEditing(!isEditing);
@@ -58,9 +51,7 @@ const PlantList = (props) => {
         }, 500);         
         setEditing(false);
     }
-
-    
-
+ 
     const submitDelete = () => {        
         setTimeout(() => {
         console.log('delete test', editedPlant);
@@ -113,12 +104,6 @@ const PlantList = (props) => {
             image: e.target.files[0]
         })
     }
-
-    //fetches plant data to render on screen
-    // useEffect(() => {
-    //     props.fetchPlants();
-    //     setIsAdding(false)
-    // }, [isAdding]);
 
     return (
         <> 

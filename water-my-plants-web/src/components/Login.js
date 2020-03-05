@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
+import { userData } from '../actions/index';
+import { connect } from 'react-redux';
 
-const Login = () => {
+const Login = (props) => {
 
     const initialExistingUser = {
         username: '',
@@ -26,6 +28,7 @@ const Login = () => {
         axiosWithAuth()
             .post(`auth/login`, existingUser)
             .then(res => {
+                props.userData(existingUser);
                 // console.log('this is res', res)
                 window.localStorage.setItem('token', res.data.token);
                 window.localStorage.setItem('userID', res.data.id);
@@ -59,4 +62,17 @@ const Login = () => {
     )
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        isEditing: state.isEditing,
+        fetchingErrors: state.fetchingErrors,
+        plants: state.plants
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    {   
+        userData 
+    }
+    )(Login);

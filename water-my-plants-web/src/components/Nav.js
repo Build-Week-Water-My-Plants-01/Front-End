@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { editUser } from '../actions/index';
 
 
-const Nav = () => {
+const Nav = (props) => {
     const [userModal, setUserModal ]= useState(false);
-    const [ userData, setUserData ] = useState({})
+    const [ userData, setUserData ] = useState({
+        username: props.username,
+        phone_number: props.phone_number,
+        password: props.password
+    })
     const history = useHistory();
 
     const logout = () => {
@@ -15,6 +21,13 @@ const Nav = () => {
 
     const toggleUser = () => {
         setUserModal(!userModal);
+    }
+
+    const handleChange = (e) => {
+        setUserData({
+            ...userData,
+            [e.target.name]: e.target.value
+        })
     }
 
     return (
@@ -42,28 +55,28 @@ const Nav = () => {
                 <input 
                     type="text"
                     name="username"
-                    onChange=''
-                    value=''
+                    onChange={handleChange}
+                    value={userData.username}
                     required
                     />
                 <label htmlFor="phonenumber">Phone Number</label>
                 <input 
                     type="text"
-                    name="phonenumber"
-                    onChange=''
-                    value=''
+                    name="phone_number"
+                    onChange={handleChange}
+                    value={userData.phone_number}
                     required
                     />
                 <label htmlFor="password">Password</label>
                 <input 
                     type="password"
                     name="password"
-                    onChange=''
-                    value=''
+                    onChange={handleChange}
+                    value={userData.password}
                     required
                 />
                                
-                <button className=" btn btn-edit" >Save Edit</button>
+                <button type="submit" className=" btn btn-edit" >Save Edit</button>
                 <button className=" btn btn-edit" onClick={()=>{toggleUser()}}>Cancel</button>
                 
                 <div className="modal-close" onClick={()=>toggleUser()}>X</div>
@@ -74,4 +87,15 @@ const Nav = () => {
 
 }
 
-export default Nav
+const mapStateToProps = state => {
+    return {
+        username: state.username,
+        phone_number: state.phone_number,
+        password: state.password,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    {editUser}
+    )(Nav);

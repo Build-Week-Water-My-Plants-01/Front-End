@@ -73,3 +73,32 @@ export const deletePlants = (editPlant) => dispatch => {
         })
 }
 
+export const USER_DATA = "USER_DATA"
+export const userData = (newUser) => dispatch => {
+    console.log('this is userData', newUser);
+    dispatch({ type: USER_DATA, payload: newUser })
+}
+
+export const NEWUSER_DATA = "NEWUSER_DATA"
+export const newUserData = (newUser) => dispatch => {
+    console.log('this is newUserData', newUser);
+    dispatch({ type: NEWUSER_DATA, payload: newUser })
+}
+
+export const EDIT_USER_REQUEST = "EDIT_USER_REQUEST";
+export const EDIT_USER_SUCCESS = "EDIT_USER_SUCCESS";
+export const EDIT_USER_FAIL = "EDIT_USER_FAIL";
+export const editUser = (editedUser) => dispatch => {
+    dispatch({ type: EDIT_USER_REQUEST});
+    const userID = window.localStorage.getItem('userID'); 
+    axiosWithAuth()
+        .put(`users/${userID}`, editedUser)
+        .then(res => {
+            console.log('success editing user', res);
+            dispatch({ type: EDIT_USER_SUCCESS });
+        })
+        .catch(err => {
+            // console.log('error deleting', err);
+            dispatch({ type: EDIT_USER_FAIL })
+        })
+}
