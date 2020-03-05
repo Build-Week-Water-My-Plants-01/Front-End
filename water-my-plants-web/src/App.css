@@ -35,12 +35,14 @@ nav {
 }
 .img-div h1{
   color: white;
-  font-size: 30px;
+  font-size: 30px; 
+  
 }
 .nav-links {
   width: 50%;
   display: flex;
   justify-content: flex-end;
+
 }
 .logout {
   width: 20%;
