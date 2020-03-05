@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import FormV from './components/FormV'
 import { PrivateRoute } from './utils/PrivateRoute';
 
 
@@ -19,6 +20,7 @@ function App() {
         <PrivateRoute path="/dashboard" component={Dashboard} />        
         <Route exact path="/login" component={ Login } />
         <Route exact path="/signup" component={ Signup } />
+        <Route exact path="/formV" component= { FormV } />
       </Switch>
     </div>
   );
