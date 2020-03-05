@@ -1,15 +1,13 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { axiosFormData } from '../utils/axiosFormData';
 
-// const userID = window.localStorage.getItem('userID');
 
 export const FETCH_DATA = 'FETCH_DATA';
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
 export const fetchPlants = () => dispatch => {
     const userID = window.localStorage.getItem('userID'); 
-    dispatch({ type: FETCH_DATA })
-    // const userID = window.localStorage.getItem('userID');    
+    dispatch({ type: FETCH_DATA })   
     axiosWithAuth()
         .get(`users/${userID}`)
         .then(res => {
@@ -31,9 +29,13 @@ export const editPlant = (editedPlant, formData) => dispatch => {
     axiosFormData()
             .put(`users/${userID}/plants/${editedPlant.id}`, formData)
             .then(res => {
+                dispatch({ type: EDIT_SUCCESS });
                 fetchPlants();                         
             })
-            .catch(err => console.log('error updating', err))
+            .catch(err => {
+                dispatch({ type: EDIT_FAIL });
+                console.log('error updating', err)
+            })
 }
 
 export const ADD_DATA = "ADD_DATA";
