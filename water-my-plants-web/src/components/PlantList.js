@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PlantCard from './PlantCard';
 import { connect } from 'react-redux';
 import { 
@@ -7,13 +7,11 @@ import {
         addPlant,
         editPlant 
         } from '../actions';
-import { useHistory } from 'react-router-dom';
 
 const PlantList = (props) => {
-    const history = useHistory();
+
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setEditing] = useState(false);
-    const [fetch, setFetch] = useState(false);
     const [newPlant, setNewPlant] = useState({
         nickname:'',
         species_name:'',
@@ -28,15 +26,9 @@ const PlantList = (props) => {
         image: ''
     })
 
-    // useEffect(() => {    
-    //     props.fetchPlants()
-        
-    // }, []);
-
     const toggleEdit = (plant) => {
         setEditing(!isEditing);
-        setEditedPlant(plant);
-        // console.log('this is target', plant);        
+        setEditedPlant(plant);    
     }
     const handleEditedPlant = e => {
             setEditedPlant({
@@ -53,17 +45,13 @@ const PlantList = (props) => {
         formData.append('image', editedPlant.image);
 
         setTimeout(() => {
-            console.log('editTest', editedPlant);
             props.editPlant(editedPlant, formData);
         }, 500);         
         setEditing(false);
     }
-
-    
-
+ 
     const submitDelete = () => {        
         setTimeout(() => {
-        console.log('delete test', editedPlant);
            props.deletePlants(editedPlant); 
         }, 500);
         setEditing(false);        
@@ -94,7 +82,6 @@ const PlantList = (props) => {
         formData.append('image', newPlant.image);
         
         setTimeout(() => {
-            console.log('add test', formData);
             props.addPlant(formData);
             setNewPlant({
                 nickname:'',
@@ -113,12 +100,6 @@ const PlantList = (props) => {
             image: e.target.files[0]
         })
     }
-
-    //fetches plant data to render on screen
-    // useEffect(() => {
-    //     props.fetchPlants();
-    //     setIsAdding(false)
-    // }, [isAdding]);
 
     return (
         <> 
@@ -161,7 +142,7 @@ const PlantList = (props) => {
                     onChange={handleEditedPlant}
                     value={editedPlant.h2o_frequency}
                 />
-                <label htmlFor="plant-image">Plant Image</label>
+                <label htmlFor="plant-image">Edit Plant Image</label>
                 <input 
                     type="file"
                     name="image"

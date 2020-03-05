@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import Nav from './Nav';
 import PlantList from './PlantList';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { connect } from 'react-redux';
 import { fetchPlants } from '../actions';
 
-const Dashboard = (props) => {
+const Dashboard = ({isEditing, fetchPlants}) => {
 
     useEffect(() => {    
-        props.fetchPlants()        
-    }, [props.isEditing]);
+        fetchPlants()        
+    }, [isEditing]);
     
     return (
         <div>

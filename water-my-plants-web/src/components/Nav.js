@@ -1,19 +1,38 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { editUser } from '../actions/index';
 
 
-const Nav = () => {
-    const [userModal, setUserModal ]= useState(false)
+const Nav = (props) => {
+    const [userModal, setUserModal ]= useState(false);
+    const [ userData, setUserData ] = useState({
+        username: props.username,
+        phone_number: props.phone_number,
+        password: props.password
+    })
     const history = useHistory();
 
     const logout = () => {
         window.localStorage.clear();
-        window.location.reload();
         history.push('/login');
+        window.location.reload();  
     }
 
     const toggleUser = () => {
         setUserModal(!userModal);
+    }
+
+    const handleChange = (e) => {
+        setUserData({
+            ...userData,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.editUser(userData);
     }
 
     return (
@@ -37,29 +56,36 @@ const Nav = () => {
             {userModal ? 
         <div className="modal-bg">
             <div className="modal">
-            <label htmlFor="nickname">Nickname</label>
+            <form onSubmit={handleSubmit}>
+            <label htmlFor="username">Username</label>
                 <input 
                     type="text"
-                    name="nickname"
-                    onChange=''
-                    value=''
+                    name="username"
+                    onChange={handleChange}
+                    value={userData.username}
+                    required
                     />
-                <label htmlFor="species_name">species</label>
+                <label htmlFor="phonenumber">Phone Number</label>
                 <input 
                     type="text"
-                    name="species_name"
-                    onChange=''
-                    value=''
+                    name="phone_number"
+                    onChange={handleChange}
+                    value={userData.phone_number}
+                    required
                     />
-                <label htmlFor="h2o_frequency">Water Frequency</label>
+                <label htmlFor="password">Password</label>
                 <input 
-                    type="text"
-                    name="h2o_frequency"
-                    onChange=''
-                    value=''
+                    type="password"
+                    name="password"
+                    onChange={handleChange}
+                    value={userData.password}
+                    required
                 />
                                
-                <button className=" btn btn-edit" onClick={()=>{toggleUser()}}>Save Edit</button>
+                <button type="submit" className=" btn btn-edit" >Save Edit</button>
+                </form>
+
+                <button className=" btn btn-edit" onClick={()=>{toggleUser()}}>Cancel</button>
                 
                 <div className="modal-close" onClick={()=>toggleUser()}>X</div>
             </div>
@@ -69,4 +95,15 @@ const Nav = () => {
 
 }
 
-export default Nav
+const mapStateToProps = state => {
+    return {
+        username: state.username,
+        phone_number: state.phone_number,
+        password: state.password,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    {editUser}
+    )(Nav);

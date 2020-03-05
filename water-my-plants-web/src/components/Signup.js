@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
@@ -22,17 +22,13 @@ const Signup = () => {
         .then(() => {
             window.localStorage.clear();
             window.location.reload();
-            // history.push("/login");
-            console.log(newUser);
         })
         .catch(err => {
             console.log(err);
         });
         history.push('/login')
-        
     }
     
-
     // Handler Functions
     const handleInputChange = (e) => {
         setNewUser({
@@ -41,7 +37,6 @@ const Signup = () => {
         })
     }
 
-
     return (
         <form onSubmit={handleSubmit}>
             <div className="form-inputs">
@@ -49,7 +44,7 @@ const Signup = () => {
             </div>
 
             <div className="form-inputs">
-                <input type='phonenumber'  name='phone_number' onChange={handleInputChange} value={phone_number} placeholder='Phone Number' required/>
+                <input type='phone_number'  name='phone_number' onChange={handleInputChange} value={phone_number} placeholder='Phone Number' required/>
             </div>
 
             <div className="form-inputs">
