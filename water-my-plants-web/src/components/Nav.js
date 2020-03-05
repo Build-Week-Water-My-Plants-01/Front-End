@@ -3,13 +3,14 @@ import { Link, useHistory } from 'react-router-dom';
 
 
 const Nav = () => {
-    const [userModal, setUserModal ]= useState(false)
+    const [userModal, setUserModal ]= useState(false);
+    const [ userData, setUserData ] = useState({})
     const history = useHistory();
 
     const logout = () => {
         window.localStorage.clear();
-        window.location.reload();
         history.push('/login');
+        window.location.reload();  
     }
 
     const toggleUser = () => {
@@ -37,29 +38,33 @@ const Nav = () => {
             {userModal ? 
         <div className="modal-bg">
             <div className="modal">
-            <label htmlFor="nickname">Nickname</label>
+            <label htmlFor="username">Username</label>
                 <input 
                     type="text"
-                    name="nickname"
+                    name="username"
                     onChange=''
                     value=''
+                    required
                     />
-                <label htmlFor="species_name">species</label>
+                <label htmlFor="phonenumber">Phone Number</label>
                 <input 
                     type="text"
-                    name="species_name"
+                    name="phonenumber"
                     onChange=''
                     value=''
+                    required
                     />
-                <label htmlFor="h2o_frequency">Water Frequency</label>
+                <label htmlFor="password">Password</label>
                 <input 
-                    type="text"
-                    name="h2o_frequency"
+                    type="password"
+                    name="password"
                     onChange=''
                     value=''
+                    required
                 />
                                
-                <button className=" btn btn-edit" onClick={()=>{toggleUser()}}>Save Edit</button>
+                <button className=" btn btn-edit" >Save Edit</button>
+                <button className=" btn btn-edit" onClick={()=>{toggleUser()}}>Cancel</button>
                 
                 <div className="modal-close" onClick={()=>toggleUser()}>X</div>
             </div>

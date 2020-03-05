@@ -29,10 +29,8 @@ const Signup = () => {
             console.log(err);
         });
         history.push('/login')
-        
     }
     
-
     // Handler Functions
     const handleInputChange = (e) => {
         setNewUser({
@@ -40,7 +38,6 @@ const Signup = () => {
             [e.target.name]: e.target.value
         })
     }
-
 
     return (
         <form onSubmit={handleSubmit}>
