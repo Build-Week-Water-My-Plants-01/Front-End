@@ -31,11 +31,10 @@ const Login = () => {
             .then(res => {
                 console.log('this is res', res)
                 window.localStorage.setItem('token', res.data.token);
-                window.localStorage.setItem('userID', res.data.id);
+                window.localStorage.setItem('userID', res.data.id);        
                 
-                setTimeout(() => {
-                    history.push('/dashboard');   
-                }, 2000);        
+                history.push('/dashboard');   
+                       
         })
     }
     

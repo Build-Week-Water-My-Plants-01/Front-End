@@ -1,13 +1,16 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import './App.css';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { PrivateRoute } from './utils/PrivateRoute';
+import { fetchPlants } from './actions/index';
+import { connect  } from 'react-redux';
 
 
-function App() {
+function App(props) {
+
   return (
     <div className="App">
       <Switch>
@@ -22,4 +25,17 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+      isEditing: state.isEditing,
+      fetchingErrors: state.fetchingErrors,
+      plants: state.plants
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {   
+      fetchPlants,
+  }
+  )(App);

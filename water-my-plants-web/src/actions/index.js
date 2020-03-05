@@ -1,20 +1,22 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { axiosFormData } from '../utils/axiosFormData';
 
-const userID = window.localStorage.getItem('userID');
+// const userID = window.localStorage.getItem('userID');
 
 export const FETCH_DATA = 'FETCH_DATA';
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
 export const fetchPlants = () => dispatch => {
+    const userID = window.localStorage.getItem('userID'); 
     dispatch({ type: FETCH_DATA })
+    // const userID = window.localStorage.getItem('userID');    
     axiosWithAuth()
         .get(`users/${userID}`)
         .then(res => {
             dispatch({ type: FETCH_SUCCESS, payload: res.data.plants});            
         })
         .catch(err => {
-            // console.log('err in fetching plants', err);
+            console.log('err in fetching plants', err);
             dispatch({ type: FETCH_FAIL, payload: err});
         })  
 }
@@ -24,6 +26,7 @@ export const EDIT_SUCCESS = "EDIT_SUCCESS";
 export const EDIT_FAIL = "EDIT_FAIL";
 export const editPlant = (editedPlant, formData) => dispatch => {
     dispatch({ type: EDIT_DATA});
+    const userID = window.localStorage.getItem('userID'); 
     //axios call goes here
     axiosFormData()
             .put(`users/${userID}/plants/${editedPlant.id}`, formData)
@@ -38,6 +41,7 @@ export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAIL = "ADD_FAIL";
 export const addPlant = (formData) => dispatch => {
     dispatch({ type: ADD_DATA});
+    const userID = window.localStorage.getItem('userID'); 
     axiosFormData()
         .post(`users/${userID}/plants/`, formData)
         .then(res => {
@@ -54,6 +58,7 @@ export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const DELETE_FAIL = "DELETE_FAIL";
 export const deletePlants = (editPlant) => dispatch => {
     dispatch({ type: DELETE_DATA});
+    const userID = window.localStorage.getItem('userID'); 
     axiosWithAuth()
         .delete(`users/${userID}/plants/${editPlant.id}`)
         .then(res => {

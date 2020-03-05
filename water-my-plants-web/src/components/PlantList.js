@@ -6,7 +6,7 @@ import {
         deletePlants, 
         addPlant,
         editPlant 
-        } from '../actions'
+        } from '../actions';
 import { useHistory } from 'react-router-dom';
 
 const PlantList = (props) => {
@@ -28,10 +28,10 @@ const PlantList = (props) => {
         image: ''
     })
 
-    useEffect(() => {    
-        props.fetchPlants()
+    // useEffect(() => {    
+    //     props.fetchPlants()
         
-    }, []);
+    // }, []);
 
     const toggleEdit = (plant) => {
         setEditing(!isEditing);
@@ -154,12 +154,12 @@ const PlantList = (props) => {
                     onChange={handleEditedPlant}
                     value={editedPlant.species_name}
                     />
-                <label htmlFor="frequency">Water Frequency</label>
+                <label htmlFor="h2o_frequency">Water Frequency</label>
                 <input 
                     type="text"
-                    name="frequency"
+                    name="h2o_frequency"
                     onChange={handleEditedPlant}
-                    value={editedPlant.frequency}
+                    value={editedPlant.h2o_frequency}
                 />
                 <label htmlFor="plant-image">Plant Image</label>
                 <input 
