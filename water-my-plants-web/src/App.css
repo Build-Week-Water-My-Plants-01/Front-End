@@ -179,4 +179,6 @@ nav {
 
 .add-btn:hover {
   background-color: rgb(255, 234, 114);
+  color: darkgreen;
+  border: 1px solid darkgreen;
 }

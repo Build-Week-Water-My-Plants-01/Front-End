@@ -6,8 +6,8 @@ const Nav = () => {
     const history = useHistory();
 
     const logout = () => {
-        window.localStorage.removeItem('token');
-        window.localStorage.removeItem('userID');
+        window.localStorage.clear();
+        window.location.reload();
         history.push('/login');
     }
 

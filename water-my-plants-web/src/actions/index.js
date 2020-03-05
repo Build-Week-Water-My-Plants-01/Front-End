@@ -11,7 +11,7 @@ export const fetchPlants = () => dispatch => {
     axiosWithAuth()
         .get(`users/${userID}`)
         .then(res => {
-            dispatch({ type: FETCH_SUCCESS, payload: res.data.plants});
+            dispatch({ type: FETCH_SUCCESS, payload: res.data.plants});            
         })
         .catch(err => {
             // console.log('err in fetching plants', err);
@@ -42,6 +42,7 @@ export const addPlant = (formData) => dispatch => {
         .post(`users/${userID}/plants/`, formData)
         .then(res => {
             dispatch({ type: ADD_SUCCESS, payload: res.data })
+            fetchPlants();
         })
         .catch(err => {
             dispatch({ type: ADD_FAIL, payload: err })

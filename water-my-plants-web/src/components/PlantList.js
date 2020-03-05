@@ -13,6 +13,7 @@ const PlantList = (props) => {
     const history = useHistory();
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setEditing] = useState(false);
+    const [fetch, setFetch] = useState(false);
     const [newPlant, setNewPlant] = useState({
         nickname:'',
         species_name:'',
@@ -26,6 +27,11 @@ const PlantList = (props) => {
         h2o_frequency:'',
         image: ''
     })
+
+    useEffect(() => {    
+        props.fetchPlants()
+        
+    }, []);
 
     const toggleEdit = (plant) => {
         setEditing(!isEditing);
@@ -109,26 +115,26 @@ const PlantList = (props) => {
     }
 
     //fetches plant data to render on screen
-    useEffect(() => {
-        props.fetchPlants();
-        history.push('/dashboard')
-    }, []);
+    // useEffect(() => {
+    //     props.fetchPlants();
+    //     setIsAdding(false)
+    // }, [isAdding]);
 
     return (
         <> 
         <div className="plant-container">
-            {props.fetchingErrors === '' ? props.plants.map(item => (
+            {props.plants.map(item => (
                 <div key={item.id} onClick={()=>{toggleEdit(item)}}>
                     <PlantCard
                         key={item.id}
-                        frequency={item.frequency}
+                        frequency={item.h2o_frequency}
                         image={item.image}
                         nickname={item.nickname}
                         species={item.species_name}
                         toggleEdit={toggleEdit}
                     />
                 </div>
-            )) : <h1> There was an error getting your plants</h1>}
+            )) }
             
         </div>
         {isEditing ? 

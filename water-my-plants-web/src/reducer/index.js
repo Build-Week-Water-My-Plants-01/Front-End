@@ -33,9 +33,10 @@ export const waterMyPlantReducer = (state = INITIAL_STATE, action) => {
         case FETCH_SUCCESS: 
             return {
                 ...state,
+                plants: action.payload, 
                 isFetching: false,
                 isEditing: false,                
-                plants: action.payload 
+                
             }
         case FETCH_FAIL: 
             return {
@@ -49,12 +50,14 @@ export const waterMyPlantReducer = (state = INITIAL_STATE, action) => {
         case ADD_DATA: 
             return {
                 ...state,                
-                isEditing: true, 
+                isEditing: true,
+                isFetching: true, 
             }
         case ADD_SUCCESS: 
             return {
                 ...state,                
-                isEditing: false, 
+                isEditing: false,
+                isFetching: false, 
             }
         case ADD_FAIL: 
             return {
