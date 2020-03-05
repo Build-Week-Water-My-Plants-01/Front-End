@@ -4,11 +4,11 @@ import PlantList from './PlantList';
 import { connect } from 'react-redux';
 import { fetchPlants } from '../actions';
 
-const Dashboard = (props) => {
+const Dashboard = ({isEditing, fetchPlants}) => {
 
     useEffect(() => {    
-        props.fetchPlants()        
-    }, [props.isEditing]);
+        fetchPlants()        
+    }, [isEditing]);
     
     return (
         <div>

@@ -30,6 +30,11 @@ const Nav = (props) => {
         })
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.editUser(userData);
+    }
+
     return (
         <nav>
             <div className="nav-cont">
@@ -51,6 +56,7 @@ const Nav = (props) => {
             {userModal ? 
         <div className="modal-bg">
             <div className="modal">
+            <form onSubmit={handleSubmit}>
             <label htmlFor="username">Username</label>
                 <input 
                     type="text"
@@ -77,6 +83,8 @@ const Nav = (props) => {
                 />
                                
                 <button type="submit" className=" btn btn-edit" >Save Edit</button>
+                </form>
+
                 <button className=" btn btn-edit" onClick={()=>{toggleUser()}}>Cancel</button>
                 
                 <div className="modal-close" onClick={()=>toggleUser()}>X</div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
@@ -22,8 +22,6 @@ const Signup = () => {
         .then(() => {
             window.localStorage.clear();
             window.location.reload();
-            // history.push("/login");
-            console.log(newUser);
         })
         .catch(err => {
             console.log(err);
