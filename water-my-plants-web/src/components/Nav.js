@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 
 const Nav = () => {
+    const [user, setUser ]= useState(false)
     const history = useHistory();
 
     const logout = () => {
-        window.localStorage.removeItem('token');
-        window.localStorage.removeItem('userID');
+        window.localStorage.clear();
+        window.location.reload();
         history.push('/login');
+    }
+
+    const editUser = () => {
+
     }
 
     return (
@@ -20,9 +25,13 @@ const Nav = () => {
                         <h1>Water My Plants 01</h1>
                 </div>
                 <div className="nav-links">
-                    <button onClick={()=>{logout()}}>
+                    <button className="edit-user"onClick={()=>{editUser()}}>
+                        Edit Info
+                    </button>
+                    <button className="logout" onClick={()=>{logout()}}>
                         Logout
                     </button>
+                    
                 </div>
             </div>
         </nav>

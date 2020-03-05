@@ -15,24 +15,6 @@ const Login = () => {
 
     const history = useHistory();
     
-    useEffect(() => {
-        if(isSubmitting) {
-            axiosWithAuth()
-                .post(`auth/login`, existingUser)
-                .then(res => {
-                    console.log('this is res', res)
-                    window.localStorage.setItem('token', res.data.token);
-                    window.localStorage.setItem('userID', res.data.id);
-                    setSubmitting(false);
-                    history.push('/dashboard');
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        } else {
-            setSubmitting(false);
-        }
-    }, [isSubmitting])
 
     // Handler Functions
     const handleInputChange = (e) => {
@@ -44,7 +26,16 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmitting(true)
+        axiosWithAuth()
+            .post(`auth/login`, existingUser)
+            .then(res => {
+                console.log('this is res', res)
+                window.localStorage.setItem('token', res.data.token);
+                window.localStorage.setItem('userID', res.data.id);        
+                
+                history.push('/dashboard');   
+                       
+        })
     }
     
     return (

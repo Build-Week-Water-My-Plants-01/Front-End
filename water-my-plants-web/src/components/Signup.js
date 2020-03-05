@@ -20,7 +20,9 @@ const Signup = () => {
       axiosWithAuth()
         .post("auth/register", newUser)
         .then(() => {
-            history.push("/login");
+            window.localStorage.clear();
+            window.location.reload();
+            // history.push("/login");
             console.log(newUser);
         })
         .catch(err => {
