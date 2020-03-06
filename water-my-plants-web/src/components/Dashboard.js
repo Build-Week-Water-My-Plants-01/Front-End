@@ -11,7 +11,7 @@ const Dashboard = ({isEditing, fetchPlants}) => {
     }, [isEditing]);
     
     return (
-        <div>
+        <div className='dashboard-bg'>
             <Nav />
             <PlantList />
         </div>

@@ -44,7 +44,7 @@ const Nav = (props) => {
                         <h1>Water My Plants 01</h1>
                 </div>
                 <div className="nav-links">
-                    <button className="edit-user"onClick={()=>{toggleUser()}}>
+                    <button className="edit-user btn-edit"onClick={()=>{toggleUser()}}>
                         Edit Info
                     </button>
 
@@ -65,7 +65,7 @@ const Nav = (props) => {
                     value={userData.username}
                     required
                     />
-                <label htmlFor="phonenumber">Phone Number</label>
+                <label htmlFor="phonenumber">Number</label>
                 <input 
                     type="text"
                     name="phone_number"
@@ -81,11 +81,11 @@ const Nav = (props) => {
                     value={userData.password}
                     required
                 />
-                               
-                <button type="submit" className=" btn btn-edit" >Save Edit</button>
-                </form>
-
-                <button className=" btn btn-edit" onClick={()=>{toggleUser()}}>Cancel</button>
+                <div className="btn-align">              
+                    <button type="submit" className=" btn btn-edit" >Save Edit</button>
+                    <button className=" btn btn-delete" onClick={()=>{toggleUser()}}>Cancel</button>
+                </div> 
+                </form>                
                 
                 <div className="modal-close" onClick={()=>toggleUser()}>X</div>
             </div>

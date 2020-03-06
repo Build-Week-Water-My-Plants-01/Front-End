@@ -24,9 +24,13 @@ const PlantCard = ({ frequency, image, nickname, species, toggleEdit}) => {
             </div>
             
             <div className="card-content">                
-                <h1>{nickname}</h1>
-                <h3>Species: {species}</h3>
-                <p>Water: {frequency}</p>                
+                <div className="card-title">
+                    <h1>{nickname}</h1>
+                </div>
+                <div className="card-subtitle">
+                    <h3>Species: {species}</h3>
+                    <p>Water: {frequency}</p>
+                </div>                
             </div>
 
             <div className="btn-container">

@@ -147,9 +147,11 @@ const PlantList = (props) => {
                     type="file"
                     name="image"
                     onChange={ handleImage }
-                />                
-                <button className=" btn btn-edit" onClick={()=>{submitEdit()}}>Save Edit</button>
-                <button className="btn btn-delete" onClick={()=>{submitDelete()}}>Delete</button>
+                />
+                <div className="btn-align">               
+                    <button className=" btn btn-edit" onClick={()=>{submitEdit()}}>Save Edit</button>
+                    <button className="btn btn-delete" onClick={()=>{submitDelete()}}>Delete</button>
+                </div> 
                 <div className="modal-close" onClick={()=>toggleEdit()}>X</div>
             </div>
         </div> : null}
@@ -188,8 +190,10 @@ const PlantList = (props) => {
                     type="file"
                     name="image"
                     onChange={ handleNewImage }
-                />                 
-                <button type="submit" className="btn-edit" onClick={()=>{addNewPlant()}}>Add New Plant</button>
+                />
+                <div className="btn-align">                
+                    <button type="submit" className=" btn btn-edit" onClick={()=>{addNewPlant()}}>Add New Plant</button>
+                </div> 
                 <div className="modal-close" onClick={()=>{toggleAdd()}}>X</div>
             </div>
         </div> : null}
