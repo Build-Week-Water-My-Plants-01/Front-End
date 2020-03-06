@@ -33,6 +33,7 @@ const Nav = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         props.editUser(userData);
+        setUserModal(false);
     }
 
     return (
@@ -41,7 +42,7 @@ const Nav = (props) => {
                 <div className="img-div">
                     <img 
                         src={require('../img/Logo.png')} alt="water-my-plants-logo"/>
-                        <h1>Water My Plants 01</h1>
+                        <h1>Water My Plants</h1>
                 </div>
                 <div className="nav-links">
                     <button className="edit-user btn-edit"onClick={()=>{toggleUser()}}>
@@ -56,7 +57,9 @@ const Nav = (props) => {
             {userModal ? 
         <div className="modal-bg">
             <div className="modal">
+            <img src={require('../img/Logo.png')} alt="logo" height="100" width="100"/>
             <form onSubmit={handleSubmit}>
+            <div className="order-switch">
             <label htmlFor="username">Username</label>
                 <input 
                     type="text"
@@ -65,6 +68,8 @@ const Nav = (props) => {
                     value={userData.username}
                     required
                     />
+            </div>
+            <div className="order-switch">
                 <label htmlFor="phonenumber">Number</label>
                 <input 
                     type="text"
@@ -73,6 +78,8 @@ const Nav = (props) => {
                     value={userData.phone_number}
                     required
                     />
+            </div>
+            <div className="order-switch">
                 <label htmlFor="password">Password</label>
                 <input 
                     type="password"
@@ -81,6 +88,7 @@ const Nav = (props) => {
                     value={userData.password}
                     required
                 />
+            </div>
                 <div className="btn-align">              
                     <button type="submit" className=" btn btn-edit" >Save Edit</button>
                     <button className=" btn btn-delete" onClick={()=>{toggleUser()}}>Cancel</button>
