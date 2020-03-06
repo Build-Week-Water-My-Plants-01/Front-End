@@ -1,16 +1,22 @@
 .App {
-  text-align: center;
-  margin: auto;
-  background-image: url(https://images.unsplash.com/photo-1425736317462-a103b1303a35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
-  background-repeat: no-repeat;
-  background-size: cover;
+
 }
 
 nav {
   width: 100%;
   height: 10vh;
-  background-color: rgb(80, 134, 80);
+  background-color: rgba(33, 78, 29, 0.966);
 
+}
+.dashboard-bg {
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  background-image: url(https://images.unsplash.com/photo-1425736317462-a103b1303a35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0,0,0, 0.2)), url(https://images.unsplash.com/photo-1425736317462-a103b1303a35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+  background-size: cover;
 }
 
 .nav-cont {
@@ -36,7 +42,7 @@ nav {
 .img-div h1{
   color: white;
   font-size: 30px; 
-  
+
 }
 .nav-links {
   width: 50%;
@@ -68,10 +74,17 @@ nav {
   /* border: 2px solid rgb(18, 99, 38); */
   width: 300px;
   height: 400px;
-  background-color: rgba(86, 148, 101, 0.966);
+  background-color: rgba(33, 78, 29, 0.966);
   margin: 5px;
+  color: white;
 }
 
+/* .card-title {
+  font-size: 88px;
+}
+.card-subtitle {
+
+} */
 .plant-container {
   display: flex;
   max-width: 1000px;
@@ -96,6 +109,7 @@ nav {
 }
 
 .btn-delete {
+  border: none;
   background-color: rgb(145, 21, 21);
   color: white;
 }
@@ -104,7 +118,8 @@ nav {
 }
 
 .btn-edit {
-  background-color: teal;
+  border: none;
+  background-color: rgb(0, 114, 76);
   color: white;
 }
 .btn-edit:hover {
@@ -135,7 +150,8 @@ nav {
 }
 
 .modal {
-  background-color: white;
+  background-color: rgba(33, 78, 29, 0.966);
+  color: white;
   width: 400px;
   height: 55vh;
   display: flex;
@@ -146,7 +162,16 @@ nav {
 }
 .modal input{
   width: 90%;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  height: 30px;
+  border: none;
+  border-bottom: 2px solid white;
+  font-size: 20px;
+  user-select: none;
 }
+
+
 
 .modal-close {
   font-family: Arial, Helvetica, sans-serif;
@@ -195,4 +220,19 @@ nav {
   background-color: rgb(255, 234, 114);
   color: darkgreen;
   border: 1px solid darkgreen;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.btn-align {
+  width: 100%;
+  margin: 20px 0 0 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
