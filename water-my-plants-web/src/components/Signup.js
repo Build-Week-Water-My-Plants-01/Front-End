@@ -2,53 +2,30 @@ import React, { useState, useEffect } from "react";
 import ReactDOM, { useHistory } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-
-
 export default function Login() {
-    
+    const { register, handleSubmit, errors } = useForm();
     const initialUser = {
       username: '',
       password: '',
       phone_number: '',
     };
-
     const [ newUser, setNewUser] = useState(initialUser);
     const { username, phone_number, password } = newUser;
     const history = useHistory();
-
-    const { register, handleSubmit, errors } = useForm();
-
     const onSubmit = (data) => {
-      console.log(data);
       axiosWithAuth()
         .post("auth/register", newUser)
         .then(() => {
+            // window.localStorage.clear();
+            // window.location.reload();
+            // history.push("/login");
             console.log(newUser);
-            // history.push('/login')
         })
         .catch(err => {
             console.log(err);
         });
+        history.push('/login')
     }
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //   axiosWithAuth()
-    //     .post("auth/register", newUser)
-    //     .then(() => {
-    //         // window.localStorage.clear();
-    //         // window.location.reload();
-    //         // history.push("/login");
-    //         console.log(newUser);
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     });
-    //     // history.push('/login')
-        
-    // }
-    
     // Handler Functions
     const handleInputChange = (e) => {
         setNewUser({
@@ -56,8 +33,6 @@ export default function Login() {
             [e.target.name]: e.target.value
         })
     }
-
-  
     return (
       <div className="App">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -74,11 +49,11 @@ export default function Login() {
             />
           </div>
           {errors.username && <p>Username Invalid!</p>}
-  
           <div>
             <label htmlFor="password">Password</label>
             <input
               defaultValue={initialUser.password}
+              type="password"
               onChange={handleInputChange}
               name="password"
               placeholder="password"
@@ -88,7 +63,6 @@ export default function Login() {
             />
           </div>
           {errors.password && <p>The password must have a min of 6 characters.</p>}
-  
           <div>
             <label htmlFor="phone_number">Phone Number</label>
             <input
@@ -100,17 +74,12 @@ export default function Login() {
               ref={register}
             />
           </div>
-  
           <button type="submit">Submit</button>
-
           <button type="login">Login</button>
         </form>
       </div>
     );
   }
-  
-
-
    
     
 
