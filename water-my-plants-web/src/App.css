@@ -1,6 +1,5 @@
-.App {
-
-}
+/* font for title and card*/
+@import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
 
 nav {
   width: 100%;
@@ -35,6 +34,7 @@ nav {
   align-items: center;
   justify-content: flex-start;
   width: 50%;
+  font-family: 'Courgette', cursive;
 }
 .img-div img{
   height: 10vh;
@@ -79,12 +79,17 @@ nav {
   color: white;
 }
 
-/* .card-title {
-  font-size: 88px;
+.plant-card:hover {
+  background-color: rgba(44, 104, 39, 0.966);
+}
+
+.card-title {
+  font-family: 'Courgette', cursive;
 }
 .card-subtitle {
-
-} */
+margin-top: 10px;
+font-size: 20px;
+} 
 .plant-container {
   display: flex;
   max-width: 1000px;
@@ -94,6 +99,13 @@ nav {
   justify-content: center;
   margin: auto;
   position: ;
+}
+
+.order-switch {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 90%;
+
 }
 
 
@@ -161,7 +173,7 @@ nav {
   position: relative;
 }
 .modal input{
-  width: 90%;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0);
   color: white;
   height: 30px;
@@ -169,6 +181,14 @@ nav {
   border-bottom: 2px solid white;
   font-size: 20px;
   user-select: none;
+}
+
+.modal form{
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 

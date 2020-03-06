@@ -16,10 +16,12 @@ import {
     NEWUSER_DATA,
     EDIT_USER_REQUEST,
     EDIT_USER_SUCCESS,
-    EDIT_USER_FAIL
+    EDIT_USER_FAIL,
+    SET_IMAGE_TO_STATE
 } from '../actions'
 
 const INITIAL_STATE = {
+    plantImg: '',
     editData: false,
     isEditing: false,
     isFetching: false,
@@ -134,6 +136,11 @@ export const waterMyPlantReducer = (state = INITIAL_STATE, action) => {
                 ...state,                
                 isEditing: false,
                 }
+        case SET_IMAGE_TO_STATE:
+            console.log('actionpayload', action.payload);
+            return {
+                plantImg: action.payload
+            }
         default: 
             return state;
             

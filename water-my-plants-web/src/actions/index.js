@@ -102,3 +102,8 @@ export const editUser = (editedUser) => dispatch => {
             dispatch({ type: EDIT_USER_FAIL, payload: err })
         })
 }
+
+export const SET_IMAGE_TO_STATE = "SET_IMAGE_TO_STATE";
+export const setImgToState = (img) => dispatch => {
+    dispatch({ type: SET_IMAGE_TO_STATE, payload: img});
+}

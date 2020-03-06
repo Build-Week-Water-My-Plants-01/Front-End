@@ -12,7 +12,7 @@ export default function Login() {
     const [ newUser, setNewUser] = useState(initialUser);
     const { username, phone_number, password } = newUser;
     const history = useHistory();
-    const onSubmit = (data) => {
+    const onSubmit = ( data ) => {
       axiosWithAuth()
         .post("auth/register", newUser)
         .then(() => {
