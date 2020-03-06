@@ -5,7 +5,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 
 export default function Login() {
-    const { register, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
     
     const initialUser = {
       username: '',
@@ -17,8 +17,7 @@ export default function Login() {
     const { username, phone_number, password } = newUser;
     const history = useHistory();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const onSubmit = (data) => {
 
       axiosWithAuth()
         .post("auth/register", newUser)
@@ -47,7 +46,7 @@ export default function Login() {
   
     return (
       <div className="App">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="username">Username</label>
             <input
@@ -66,6 +65,7 @@ export default function Login() {
             <label htmlFor="password">Password</label>
             <input
               defaultValue={initialUser.password}
+              type="password"
               onChange={handleInputChange}
               name="password"
               placeholder="password"
