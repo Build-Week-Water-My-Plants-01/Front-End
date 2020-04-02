@@ -28,7 +28,6 @@ const PlantList = (props) => {
     })
 
     const toggleEdit = (plant) => {
-        console.log('img here',props.plantImg);
         setEditing(!isEditing);
         setEditedPlant(plant);    
     }
