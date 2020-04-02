@@ -137,7 +137,6 @@ export const waterMyPlantReducer = (state = INITIAL_STATE, action) => {
                 isEditing: false,
                 }
         case SET_IMAGE_TO_STATE:
-            console.log('actionpayload', action.payload);
             return {
                 plantImg: action.payload
             }

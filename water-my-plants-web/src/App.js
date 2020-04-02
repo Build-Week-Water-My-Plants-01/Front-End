@@ -7,8 +7,6 @@ import Signup from './components/Signup';
 import FormV from './components/FormV'
 import { PrivateRoute } from './utils/PrivateRoute';
 
-
-
 function App() {
 
   return (

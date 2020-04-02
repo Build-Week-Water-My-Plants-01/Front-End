@@ -14,7 +14,6 @@ export const fetchPlants = () => dispatch => {
             dispatch({ type: FETCH_SUCCESS, payload: res.data.plants});            
         })
         .catch(err => {
-            // console.log('err in fetching plants', err);
             dispatch({ type: FETCH_FAIL, payload: err});
         })  
 }
@@ -34,7 +33,6 @@ export const editPlant = (editedPlant, formData) => dispatch => {
             })
             .catch(err => {
                 dispatch({ type: EDIT_FAIL });
-                // console.log('error updating', err)
             })
 }
 
@@ -64,24 +62,20 @@ export const deletePlants = (editPlant) => dispatch => {
     axiosWithAuth()
         .delete(`users/${userID}/plants/${editPlant.id}`)
         .then(res => {
-            // console.log('success deleting', res);
             dispatch({ type: DELETE_SUCCESS });
         })
         .catch(err => {
-            // console.log('error deleting', err);
             dispatch({ type: DELETE_FAIL })
         })
 }
 
 export const USER_DATA = "USER_DATA"
 export const userData = (newUser) => dispatch => {
-    // console.log('this is userData', newUser);
     dispatch({ type: USER_DATA, payload: newUser })
 }
 
 export const NEWUSER_DATA = "NEWUSER_DATA"
 export const newUserData = (newUser) => dispatch => {
-    // console.log('this is newUserData', newUser);
     dispatch({ type: NEWUSER_DATA, payload: newUser })
 }
 
@@ -94,11 +88,9 @@ export const editUser = (editedUser) => dispatch => {
     axiosWithAuth()
         .put(`users/${userID}`, editedUser)
         .then(res => {
-            // console.log('success editing credentials', res);
             dispatch({ type: EDIT_USER_SUCCESS });
         })
         .catch(err => {
-            // console.log('error editing credentials', err);
             dispatch({ type: EDIT_USER_FAIL, payload: err })
         })
 }

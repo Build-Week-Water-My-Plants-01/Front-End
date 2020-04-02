@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM, { useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 export default function Login() {
@@ -10,16 +10,12 @@ export default function Login() {
       phone_number: '',
     };
     const [ newUser, setNewUser] = useState(initialUser);
-    const { username, phone_number, password } = newUser;
     const history = useHistory();
     const onSubmit = ( data ) => {
       axiosWithAuth()
         .post("auth/register", newUser)
         .then(() => {
-            // window.localStorage.clear();
-            // window.location.reload();
-            // history.push("/login");
-            console.log(newUser);
+            history.push("/login");
         })
         .catch(err => {
             console.log(err);
@@ -34,15 +30,15 @@ export default function Login() {
         })
     }
     return (
-      <div className="App">
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="form-cont">
+        <form className="sign-in" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="username">Username</label>
             <input
               defaultValue={initialUser.username}
               onChange={handleInputChange}
               name="username"
-              placeholder="username"
+              placeholder="Username"
               ref={register({
                 validate: value => value.length > 3,
               })}
@@ -56,7 +52,7 @@ export default function Login() {
               type="password"
               onChange={handleInputChange}
               name="password"
-              placeholder="password"
+              placeholder="Password"
               ref={register({
                 validate: value => value.length > 6,
               })}
@@ -69,13 +65,14 @@ export default function Login() {
               defaultValue={initialUser.phone_number}
               onChange={handleInputChange}
               name="phone_number"
-              placeholder="phone_number"
+              placeholder="Phone Number"
               type="phone_number"
               ref={register}
             />
           </div>
-          <button type="submit">Submit</button>
-          <button type="login">Login</button>
+          <button className='btn btn-delete' type="submit">Submit</button>
+          <h1>Or</h1>
+          <button className='btn btn-edit' type="login" onClick={()=>{history.push('/')}}>Login</button>
         </form>
       </div>
     );

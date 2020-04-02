@@ -29,7 +29,6 @@ const Login = (props) => {
             .post(`auth/login`, existingUser)
             .then(res => {
                 props.userData(existingUser);
-                // console.log('this is res', res)
                 window.localStorage.setItem('token', res.data.token);
                 window.localStorage.setItem('userID', res.data.id);
                 history.push('/dashboard'); 
@@ -40,7 +39,8 @@ const Login = (props) => {
     }
     
     return (
-        <form onSubmit={handleSubmit}>
+        <div className="form-cont">
+        <form onSubmit={handleSubmit} className="sign-in">
             <div className="form-inputs">
                 <label htmlFor="username">Username</label>
                 <input type='text'  name='username' onChange={handleInputChange} value={loginUsername} placeholder='Username' required/>
@@ -51,14 +51,17 @@ const Login = (props) => {
                 <input type='password'  name='password' onChange={handleInputChange} value={loginPassword} placeholder='Password' required/>
             </div>
 
-            <button type='submit'>
+            <button type='submit' className='btn btn-delete'>
                 Login
             </button>
 
-            <button onClick={()=>{history.push('/signup')}}>
+            <h1>Or</h1>
+
+            <button className='btn btn-edit' onClick={()=>{history.push('/signup')}}>
                 Sign Up!
             </button>
         </form>
+        </div>
     )
 }
 
